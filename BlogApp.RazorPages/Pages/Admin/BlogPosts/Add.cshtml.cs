@@ -1,6 +1,7 @@
 using BlogApp.RazorPages.Data;
 using BlogApp.RazorPages.Models.Domain;
 using BlogApp.RazorPages.Models.ViewModels;
+using BlogApp.RazorPages.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -8,15 +9,15 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
 {
     public class AddModel : PageModel
     {
-        private readonly BlogAppDbContext blogAppDbContext;
+		private readonly IBlogPostRepository blogPostRepository;
 
-        [BindProperty]
+		[BindProperty]
         public AddBlogPost AddBlogPostRequest { get; set; }
 
-        public AddModel(BlogAppDbContext BlogAppDbContext)
+        public AddModel(IBlogPostRepository BlogPostRepository)
         {
-            blogAppDbContext = BlogAppDbContext;
-        }
+			this.blogPostRepository = BlogPostRepository;
+		}
         public void OnGet()
         {
         }
@@ -35,8 +36,8 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
                 Author = AddBlogPostRequest.Author,
                 Visible = AddBlogPostRequest.Visible
             };
-            await blogAppDbContext.BlogPosts.AddAsync(blogPost);
-            await blogAppDbContext.SaveChangesAsync();
+
+            await blogPostRepository.AddPostAsync(blogPost);
 
             return RedirectToPage("/admin/blogposts/list");
         }
