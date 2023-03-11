@@ -21,7 +21,7 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
         {
         }
 
-        public void OnPost() 
+        public IActionResult OnPost() 
         {
             var blogPost = new BlogPost()
             {
@@ -37,6 +37,8 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
             };
             blogAppDbContext.BlogPosts.Add(blogPost);
             blogAppDbContext.SaveChanges();
+
+            return RedirectToPage("/admin/blogposts/list");
         }
     }
 }
