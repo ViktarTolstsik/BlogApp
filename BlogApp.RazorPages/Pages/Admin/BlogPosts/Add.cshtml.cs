@@ -39,6 +39,8 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
 
             await blogPostRepository.AddPostAsync(blogPost);
 
+            TempData["MessageDescription"] = "New blog post created!";
+
             return RedirectToPage("/admin/blogposts/list");
         }
     }
