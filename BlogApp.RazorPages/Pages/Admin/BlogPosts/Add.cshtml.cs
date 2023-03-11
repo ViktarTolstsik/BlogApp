@@ -4,6 +4,7 @@ using BlogApp.RazorPages.Models.ViewModels;
 using BlogApp.RazorPages.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.Json;
 
 namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
 {
@@ -39,9 +40,16 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
 
             await blogPostRepository.AddPostAsync(blogPost);
 
-            TempData["MessageDescription"] = "New blog post created!";
+            var notification = new Notification
+            {
+                Type = Enums.NotificationType.Success,
+                Message = "New blog post created!"
+            };
 
-            return RedirectToPage("/admin/blogposts/list");
+            //TempData can't transfer complex objects =(
+            TempData["MessageDescription"] = JsonSerializer.Serialize(notification);
+
+			return RedirectToPage("/admin/blogposts/list");
         }
     }
 }
