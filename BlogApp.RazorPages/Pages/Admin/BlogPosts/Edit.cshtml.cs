@@ -25,7 +25,10 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
         public async Task<IActionResult> OnPostEdit()
         {
             await blogPostRepository.UpdatePostAsync(BlogPost);
-            return RedirectToPage("/admin/blogposts/list");
+
+            ViewData["MessageDescription"] = "Update successfull!";
+
+            return Page();
         }
         public async Task<IActionResult> OnPostDelete() 
         {
