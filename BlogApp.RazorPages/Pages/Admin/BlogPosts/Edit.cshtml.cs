@@ -17,13 +17,13 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
 			blogAppDbContext = BlogAppDbContext;
 		}
 
-        public void OnGet(Guid Id)
+        public async Task OnGet(Guid Id)
         {
-            BlogPost = blogAppDbContext.BlogPosts.Find(Id);
+            BlogPost = await blogAppDbContext.BlogPosts.FindAsync(Id);
         }
-        public IActionResult OnPostEdit()
+        public async Task<IActionResult> OnPostEdit()
         {
-            var existingBlogPost = blogAppDbContext.BlogPosts.Find(BlogPost.Id);
+            var existingBlogPost = await blogAppDbContext.BlogPosts.FindAsync(BlogPost.Id);
 
             if (existingBlogPost != null) 
             {
@@ -38,17 +38,17 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
                 existingBlogPost.Visible= BlogPost.Visible;
             }
 
-            blogAppDbContext.SaveChanges();
+            await blogAppDbContext.SaveChangesAsync();
             return RedirectToPage("/admin/blogposts/list");
         }
-        public IActionResult OnPostDelete() 
+        public async Task<IActionResult> OnPostDelete() 
         {
-            var existingBlogPost = blogAppDbContext.BlogPosts.Find(BlogPost.Id);
+            var existingBlogPost = await blogAppDbContext.BlogPosts.FindAsync(BlogPost.Id);
 
             if (existingBlogPost != null) 
             {
                 blogAppDbContext.BlogPosts.Remove(existingBlogPost);
-                blogAppDbContext.SaveChanges();
+                await blogAppDbContext.SaveChangesAsync();
 
                 return RedirectToPage("/admin/blogposts/list");
             }

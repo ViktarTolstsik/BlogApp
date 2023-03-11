@@ -21,7 +21,7 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
         {
         }
 
-        public IActionResult OnPost() 
+        public async Task<IActionResult> OnPost() 
         {
             var blogPost = new BlogPost()
             {
@@ -35,8 +35,8 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
                 Author = AddBlogPostRequest.Author,
                 Visible = AddBlogPostRequest.Visible
             };
-            blogAppDbContext.BlogPosts.Add(blogPost);
-            blogAppDbContext.SaveChanges();
+            await blogAppDbContext.BlogPosts.AddAsync(blogPost);
+            await blogAppDbContext.SaveChangesAsync();
 
             return RedirectToPage("/admin/blogposts/list");
         }
