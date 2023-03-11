@@ -21,7 +21,7 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
         {
             BlogPost = blogAppDbContext.BlogPosts.Find(Id);
         }
-        public IActionResult OnPost()
+        public IActionResult OnPostEdit()
         {
             var existingBlogPost = blogAppDbContext.BlogPosts.Find(BlogPost.Id);
 
@@ -40,6 +40,19 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
 
             blogAppDbContext.SaveChanges();
             return RedirectToPage("/admin/blogposts/list");
+        }
+        public IActionResult OnPostDelete() 
+        {
+            var existingBlogPost = blogAppDbContext.BlogPosts.Find(BlogPost.Id);
+
+            if (existingBlogPost != null) 
+            {
+                blogAppDbContext.BlogPosts.Remove(existingBlogPost);
+                blogAppDbContext.SaveChanges();
+
+                return RedirectToPage("/admin/blogposts/list");
+            }
+            return Page();
         }
     }
 }
