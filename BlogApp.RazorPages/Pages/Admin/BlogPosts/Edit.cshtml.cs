@@ -15,7 +15,9 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
 		[BindProperty]
         public BlogPost BlogPost { get; set; }
 
-		public EditModel(IBlogPostRepository BlogPostRepository)
+        [BindProperty]
+        public IFormFile FeaturedImage { get; set; }
+        public EditModel(IBlogPostRepository BlogPostRepository)
         {
 			blogPostRepository = BlogPostRepository;
 		}
