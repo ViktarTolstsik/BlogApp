@@ -1,4 +1,5 @@
 ﻿using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 
 namespace BlogApp.RazorPages.Repositories
 {
@@ -15,18 +16,19 @@ namespace BlogApp.RazorPages.Repositories
         }
         public async Task<string> UploadAsync(IFormFile file)
         {
-            var client = new Cloudinary(account);
-            var uploadFileResult = await client.UploadAsync(new CloudinaryDotNet.Actions.ImageUploadParams()
+
+            var cloudinary = new Cloudinary(account);
+            var uploadParams = new ImageUploadParams()
             {
                 File = new FileDescription(file.FileName, file.OpenReadStream()),
-                DisplayName = file.FileName
-            });
+                PublicId = file.FileName
+            };
 
-            if (uploadFileResult != null && uploadFileResult.StatusCode ==System.Net.HttpStatusCode.OK) 
+            var uploadResult = await cloudinary.UploadAsync(uploadParams);
+            if (uploadResult != null && uploadResult.StatusCode == System.Net.HttpStatusCode.OK) 
             {
-                return uploadFileResult.SecureUri.ToString();
+                return uploadResult.SecureUri.ToString();
             }
-
             return null;
         }
     }

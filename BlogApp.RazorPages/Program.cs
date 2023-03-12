@@ -12,6 +12,7 @@ builder.Services.AddDbContext<BlogAppDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("BlogAppDbConnectionString")));
 
 builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
+builder.Services.AddScoped<IImageRepository, ImageRepository>();
 
 var app = builder.Build();
 
