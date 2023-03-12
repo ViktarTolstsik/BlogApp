@@ -6,10 +6,10 @@ namespace BlogApp.RazorPages.Controllers
     [Route("api/[controller]")]
     public class ImagesController : Controller
     {
-        [HttpGet]
-        public IActionResult Index()
-        {
-            return Ok("Images get");
+        [HttpPost]
+        public async Task<IActionResult> UploadAsync(IFormFile file)
+        { 
+
         }
     }
 }
