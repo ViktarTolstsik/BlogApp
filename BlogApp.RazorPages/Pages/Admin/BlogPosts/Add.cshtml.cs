@@ -18,6 +18,8 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
         [BindProperty]
         public IFormFile FeaturedImage { get; set; }
 
+        [BindProperty]
+        public string Tags { get; set; }
         public AddModel(IBlogPostRepository BlogPostRepository)
         {
 			this.blogPostRepository = BlogPostRepository;
@@ -38,7 +40,8 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
                 UrlHandle = AddBlogPostRequest.UrlHandle,
                 PublishedDate = AddBlogPostRequest.PublishedDate,
                 Author = AddBlogPostRequest.Author,
-                Visible = AddBlogPostRequest.Visible
+                Visible = AddBlogPostRequest.Visible,
+                Tags = new List<Tag>(Tags.Split(',').Select(x => new Tag() {Name = x.Trim()}))
             };
 
             await blogPostRepository.AddPostAsync(blogPost);
