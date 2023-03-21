@@ -42,6 +42,11 @@ namespace BlogApp.RazorPages.Repositories
 			return await blogAppDbContext.BlogPosts.FindAsync(Id);
 		}
 
+		public async Task<BlogPost> GetPostAsync(string urlHandle)
+		{
+			return await blogAppDbContext.BlogPosts.FirstOrDefaultAsync(x => x.UrlHandle == urlHandle);
+		}
+
 		public async Task<BlogPost> UpdatePostAsync(BlogPost blogPost)
 		{
 			var existingBlogPost = await blogAppDbContext.BlogPosts.FindAsync(blogPost.Id);
