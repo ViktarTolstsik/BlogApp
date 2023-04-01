@@ -9,7 +9,7 @@ using System.Text.Json;
 
 namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AddModel : PageModel
     {
 		private readonly IBlogPostRepository blogPostRepository;
