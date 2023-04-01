@@ -33,8 +33,13 @@ namespace BlogApp.RazorPages.Repositories
 
 		public async Task<IEnumerable<BlogPost>> GetAllAsync()
 		{
-			return await blogAppDbContext.BlogPosts.ToListAsync();
+			return await blogAppDbContext.BlogPosts.Include(nameof(BlogPost.Tags)).ToListAsync();
 
+		}
+
+		public async Task<IEnumerable<BlogPost>> GetAllAsync(string tagName)
+		{
+			return await (blogAppDbContext.BlogPosts.Include(nameof(BlogPost.Tags)).Where(x => x.Tags.Any(x => x.Name == tagName))).ToListAsync();
 		}
 
 		public async Task<BlogPost> GetPostAsync(Guid Id)
