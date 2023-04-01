@@ -43,10 +43,6 @@ namespace BlogApp.RazorPages.Pages
 					};
 					return Page();
 				}
-
-
-
-
             }
             else
             { 

@@ -2,12 +2,14 @@ using BlogApp.RazorPages.Data;
 using BlogApp.RazorPages.Models.Domain;
 using BlogApp.RazorPages.Models.ViewModels;
 using BlogApp.RazorPages.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 
 namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
 {
+    [Authorize]
     public class AddModel : PageModel
     {
 		private readonly IBlogPostRepository blogPostRepository;
