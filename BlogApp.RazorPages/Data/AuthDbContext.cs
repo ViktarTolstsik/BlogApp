@@ -52,7 +52,9 @@ namespace BlogApp.RazorPages.Data
 			{
 				Id = superAdminId,
 				UserName = "superadmin@blogapp.com",
-				Email = "superadmin@blogapp.com"
+				Email = "superadmin@blogapp.com",
+				NormalizedEmail = "superadmin@blogapp.com".ToUpper(),
+				NormalizedUserName = "superadmin@blogapp.com".ToUpper()
 			};
 
 			superAdminUser.PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(superAdminUser, "superadmin123");

@@ -4,6 +4,7 @@ using BlogApp.RazorPages.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogApp.RazorPages.Migrations.AuthDb
 {
     [DbContext(typeof(AuthDbContext))]
-    partial class AuthDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230401143339_Removing superadmin")]
+    partial class Removingsuperadmin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,24 +163,6 @@ namespace BlogApp.RazorPages.Migrations.AuthDb
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "55af30d8-faaf-425a-b153-1adad490dd46",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "fbbfcf2f-6303-43cd-8d3a-03752670ea24",
-                            Email = "superadmin@blogapp.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "SUPERADMIN@BLOGAPP.COM",
-                            NormalizedUserName = "SUPERADMIN@BLOGAPP.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHI7Kgdq+DTQHJgk3gFfH7xMqrZJmUj2vMi3YULyC/dTNzdalsMEtVNZlAp9PMcH6Q==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "e9874e53-17fc-4be4-99c8-5e9784edce29",
-                            TwoFactorEnabled = false,
-                            UserName = "superadmin@blogapp.com"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -240,23 +225,6 @@ namespace BlogApp.RazorPages.Migrations.AuthDb
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "55af30d8-faaf-425a-b153-1adad490dd46",
-                            RoleId = "eb75475b-ae2a-4076-98e3-a9bd90ba3f90"
-                        },
-                        new
-                        {
-                            UserId = "55af30d8-faaf-425a-b153-1adad490dd46",
-                            RoleId = "6ac4033f-d0a4-40fa-abce-1ecbb85230d4"
-                        },
-                        new
-                        {
-                            UserId = "55af30d8-faaf-425a-b153-1adad490dd46",
-                            RoleId = "6fba2a38-5a33-406c-a8e6-06dc54383f85"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

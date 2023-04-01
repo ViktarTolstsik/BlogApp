@@ -4,6 +4,7 @@ using BlogApp.RazorPages.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogApp.RazorPages.Migrations.AuthDb
 {
     [DbContext(typeof(AuthDbContext))]
-    partial class AuthDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230401142448_Adding Normalized Username")]
+    partial class AddingNormalizedUsername
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,15 +169,15 @@ namespace BlogApp.RazorPages.Migrations.AuthDb
                         {
                             Id = "55af30d8-faaf-425a-b153-1adad490dd46",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fbbfcf2f-6303-43cd-8d3a-03752670ea24",
+                            ConcurrencyStamp = "2958dc09-9385-4ea9-a14b-857140ea02ee",
                             Email = "superadmin@blogapp.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@BLOGAPP.COM",
                             NormalizedUserName = "SUPERADMIN@BLOGAPP.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHI7Kgdq+DTQHJgk3gFfH7xMqrZJmUj2vMi3YULyC/dTNzdalsMEtVNZlAp9PMcH6Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPAOyGdcywuGQ0uq43IP1zUiA/w45COcXxZsB8fqIiOCJQQ5N/jKkv/eciAcWDdWew==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e9874e53-17fc-4be4-99c8-5e9784edce29",
+                            SecurityStamp = "a78378c2-a05c-43ec-ab9a-1aa63502fb46",
                             TwoFactorEnabled = false,
                             UserName = "superadmin@blogapp.com"
                         });
