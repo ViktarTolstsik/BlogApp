@@ -20,12 +20,16 @@ namespace BlogApp.RazorPages.Pages
         {
         }
 
-        public async Task<IActionResult> OnPost() 
+        public async Task<IActionResult> OnPost(string ReturnUrl) 
         {
             var signInResult = await signInManager.PasswordSignInAsync(LoginVM.Username, LoginVM.Password, false, false);
 
             if (signInResult.Succeeded)
             {
+                if (!string.IsNullOrWhiteSpace(ReturnUrl)) 
+                {
+                    return RedirectToPage(ReturnUrl);
+                }
                 return RedirectToPage("Index");
             }
             else 
