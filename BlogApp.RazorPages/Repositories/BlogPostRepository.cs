@@ -39,17 +39,17 @@ namespace BlogApp.RazorPages.Repositories
 
 		public async Task<BlogPost> GetPostAsync(Guid Id)
 		{
-			return await blogAppDbContext.BlogPosts.FindAsync(Id);
+			return await blogAppDbContext.BlogPosts.Include(nameof(BlogPost.Tags)).FirstOrDefaultAsync(x => x.Id == Id);
 		}
 
 		public async Task<BlogPost> GetPostAsync(string urlHandle)
 		{
-			return await blogAppDbContext.BlogPosts.FirstOrDefaultAsync(x => x.UrlHandle == urlHandle);
+			return await blogAppDbContext.BlogPosts.Include(nameof(BlogPost.Tags)).FirstOrDefaultAsync(x => x.UrlHandle == urlHandle);
 		}
 
 		public async Task<BlogPost> UpdatePostAsync(BlogPost blogPost)
 		{
-			var existingBlogPost = await blogAppDbContext.BlogPosts.FindAsync(blogPost.Id);
+			var existingBlogPost = await blogAppDbContext.BlogPosts.Include(nameof(blogPost.Tags)).FirstOrDefaultAsync(x => x.Id == blogPost.Id);
 
 			if (existingBlogPost != null)
 			{
@@ -62,6 +62,18 @@ namespace BlogApp.RazorPages.Repositories
 				existingBlogPost.PublishedDate = blogPost.PublishedDate;
 				existingBlogPost.Author = blogPost.Author;
 				existingBlogPost.Visible = blogPost.Visible;
+
+
+				if (blogPost.Tags != null && blogPost.Tags.Any())
+				{
+					//Delete the existing tags
+					blogAppDbContext.Tags.RemoveRange(existingBlogPost.Tags);
+
+					//Add new tags
+					blogPost.Tags.ToList().ForEach(x => x.BlogPostId = existingBlogPost.Id);
+					await blogAppDbContext.Tags.AddRangeAsync(blogPost.Tags);
+				}
+
 			}
 
 			await blogAppDbContext.SaveChangesAsync();

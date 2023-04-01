@@ -17,6 +17,9 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
 
         [BindProperty]
         public IFormFile FeaturedImage { get; set; }
+
+        [BindProperty]
+        public string Tags { get; set; }
         public EditModel(IBlogPostRepository BlogPostRepository)
         {
 			blogPostRepository = BlogPostRepository;
@@ -25,11 +28,18 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
         public async Task OnGet(Guid Id)
         {
             BlogPost = await blogPostRepository.GetPostAsync(Id);
+
+            if (BlogPost.Tags != null  && BlogPost != null) 
+            {
+                Tags = string.Join(",", BlogPost.Tags.Select(x => x.Name));
+            }
         }
         public async Task<IActionResult> OnPostEdit()
         {
             try
             {
+                BlogPost.Tags = new List<Tag> (Tags.Split(',').Select(x => new Tag() { Name = x.Trim()}));
+
                 await blogPostRepository.UpdatePostAsync(BlogPost);
 
                 ViewData["MessageDescription"] = new Notification
