@@ -5,7 +5,7 @@ namespace BlogApp.RazorPages.Data
 {
     public class BlogAppDbContext : DbContext
     {
-        public BlogAppDbContext(DbContextOptions options) : base(options)
+        public BlogAppDbContext(DbContextOptions<BlogAppDbContext> options) : base(options)
         {
         }
 
