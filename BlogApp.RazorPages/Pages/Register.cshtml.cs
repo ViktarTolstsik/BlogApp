@@ -32,7 +32,7 @@ namespace BlogApp.RazorPages.Pages
 
             if(identityResult.Succeeded) 
             {
-                ViewData["Notification"] = new Notification
+                ViewData["MessageDescription"] = new Notification
                 {
                     Type = Enums.NotificationType.Success,
                     Message = "Registration successful."
@@ -40,13 +40,16 @@ namespace BlogApp.RazorPages.Pages
 
                 return Page();
             }
-
-			ViewData["Notification"] = new Notification
-			{
-				Type = Enums.NotificationType.Error,
-				Message = "Registration failed."
-			};
+            else
+            { 
+                ViewData["MessageDescription"] = new Notification
+                {
+                    Type = Enums.NotificationType.Error,
+                    Message = "Registration failed."
+                };
+            }
 			return Page();
+
         }
     }
 }

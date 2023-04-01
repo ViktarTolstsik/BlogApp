@@ -30,7 +30,7 @@ namespace BlogApp.RazorPages.Pages
             }
             else 
             {
-                ViewData["Notification"] = new Notification
+                ViewData["MessageDescription"] = new Notification
                 {
                     Type = Enums.NotificationType.Error,
                     Message = "Login failed"
