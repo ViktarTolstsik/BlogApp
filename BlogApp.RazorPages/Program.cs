@@ -1,5 +1,6 @@
 using BlogApp.RazorPages.Data;
 using BlogApp.RazorPages.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,12 @@ builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<BlogAppDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("BlogAppDbConnectionString")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BlogAppDbConnectionString")));
+
+builder.Services.AddDbContext<AuthDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BlogAppAuthDbConnectionString")));
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AuthDbContext>();
 
 builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
 builder.Services.AddScoped<IImageRepository, ImageRepository>();
@@ -30,6 +36,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
