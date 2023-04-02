@@ -3,6 +3,7 @@
 
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<IdentityUser> userManager
+@inject SignInManager<IdentityUser> signInManager
 
 @{
 	ViewData["Title"] = Model.BlogPost.PageTitle;
@@ -21,10 +22,23 @@
 
 				<div class="mb-3">
 					<span>
-						<a id="btnLike" style="cursor:pointer">
-							<i class="bi bi-hand-thumbs-up me-1"></i>
-						</a>
-						@Model.TotalLikes likes
+						@if (signInManager.IsSignedIn(User))
+						{
+							@if (Model.IsLiked)
+							{
+								<a style="cursor:pointer">
+									<i class="bi bi-hand-thumbs-up-fill"></i>
+								</a>
+							}
+							else
+							{
+								<a id="btnLike" style="cursor:pointer">
+									<i class="bi bi-hand-thumbs-up me-1"></i>
+								</a>
+							}
+						}
+
+						<span id="likes">@Model.TotalLikes</span> likes
 					</span>
 				</div>
 
@@ -53,22 +67,40 @@
 	</div>
 </div>
 
-				
+
 @section Scripts
-{
+	{
 	<script>
 		const btnLike = document.getElementById('btnLike');
+		const likesElement = document.getElementById('likes');
 
-		async function addLike(){
-			fetch('/api/postlike/add',{
+		async function getLikes() {
+			fetch('/api/postlike/@Model.BlogPost.Id/totallikes', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					'Accept': '*/*'
+				}
+			})
+
+				.then(data => data.json())
+				.then(result => likesElement.innerHTML = result)
+		}
+
+		async function addLike() {
+			fetch('/api/postlike/add', {
 				method: 'POST',
-				headers:{
-					'Content-Type':'application/json',
+				headers: {
+					'Content-Type': 'application/json',
 					'Accept': '*/*'
 				},
-				body: JSON.stringify({postId : '@Model.BlogPost.Id', userId : '@userManager.GetUserId(User)'})
+				body: JSON.stringify({ postId: '@Model.BlogPost.Id', userId: '@userManager.GetUserId(User)' })
 			})
-			.then(console.log('finished'));
+				.then(() => {
+					btnLike.innerHTML = '<i class="bi bi-hand-thumbs-up-fill"></i>';
+					btnLike.removeEventListener('click', addLike);
+					getLikes();
+				});
 		}
 
 		btnLike.addEventListener('click', addLike);

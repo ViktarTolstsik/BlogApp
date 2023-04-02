@@ -18,12 +18,17 @@ namespace BlogApp.RazorPages.Repositories
 			var like = new BlogPostLike
 			{
 				Id = Guid.NewGuid(),
-				BlogPostId= postId,
+				BlogPostId = postId,
 				UserId = userId
 			};
 
 			await blogAppDbContext.BlogPostLike.AddAsync(like);
 			await blogAppDbContext.SaveChangesAsync();
+		}
+
+		public async Task<IEnumerable<BlogPostLike>> GetLikes(Guid postId)
+		{
+			return await blogAppDbContext.BlogPostLike.Where(x => x.BlogPostId == postId).ToListAsync();
 		}
 
 		public async Task<int> GetTotalLikes(Guid blogPostId)

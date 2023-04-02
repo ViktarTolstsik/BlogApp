@@ -15,11 +15,21 @@ namespace BlogApp.RazorPages.Controllers
 			this.postLikeRepository = postLikeRepository;
 		}
 		[Route("Add")]
+		[HttpPost]
 		public async Task<IActionResult> AddLike([FromBody] AddPostLikeRequest addPostLikeRequest)
 		{
 			await postLikeRepository.AddLike(addPostLikeRequest.PostId, addPostLikeRequest.UserId);
 
 			return Ok();
+		}
+
+		[Route("{postId:Guid}/totalLikes")]
+		[HttpGet]
+		public async Task<IActionResult> GetLikes([FromRoute] Guid postId)
+		{
+			var likes = await postLikeRepository.GetTotalLikes(postId);
+
+			return Ok(likes);
 		}
 	}
 }
