@@ -1,5 +1,6 @@
 ﻿using BlogApp.RazorPages.Data;
 using BlogApp.RazorPages.Models.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogApp.RazorPages.Repositories
 {
@@ -16,6 +17,11 @@ namespace BlogApp.RazorPages.Repositories
 			await blogAppDbContext.BlogPostComment.AddAsync(blogPostComment);
 			await blogAppDbContext.SaveChangesAsync();
 			return blogPostComment;
+		}
+
+		public async Task<IEnumerable<BlogPostComment>> GetAllAsync(Guid blogPostId)
+		{
+			return await blogAppDbContext.BlogPostComment.Where(x => x.PostId == blogPostId).ToListAsync();
 		}
 	}
 }

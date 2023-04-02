@@ -1,4 +1,5 @@
 using BlogApp.RazorPages.Models.Domain;
+using BlogApp.RazorPages.Models.ViewModels;
 using BlogApp.RazorPages.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@ namespace BlogApp.RazorPages.Pages.Blog
 		private readonly IPostCommentRepository postCommentRepository;
 
 		public BlogPost BlogPost { get; set; }
+        public List<BlogComment> Comments { get; set; }
         public int TotalLikes { get; set; }
         public bool IsLiked { get; set; }
         
@@ -23,6 +25,8 @@ namespace BlogApp.RazorPages.Pages.Blog
 
         [BindProperty]
         public string CommentDescription { get; set; }
+
+        public int MyProperty { get; set; }
 
         public PostDetailsModel(IBlogPostRepository blogPostRepository, 
             IPostLikeRepository postLikeRepository, 
@@ -51,6 +55,8 @@ namespace BlogApp.RazorPages.Pages.Blog
                     var userId = userManager.GetUserId(User);
 
                     IsLiked = likes.Any(x => x.UserId == Guid.Parse(userId));
+
+                    await GetComments();
                 }
 
                TotalLikes = await postLikeRepository.GetTotalLikes(BlogPost.Id);
@@ -75,5 +81,22 @@ namespace BlogApp.RazorPages.Pages.Blog
 			}
             return RedirectToPage("/blog/postdetails", new { urlHandle = urlHandle });
         }
+
+        private async Task GetComments()
+        {
+			var blogPostComments = await postCommentRepository.GetAllAsync(BlogPostId);
+
+            var commentsVM = new List<BlogComment>();
+            foreach (var comment in blogPostComments)
+            {
+                commentsVM.Add(new BlogComment()
+                {
+                    AddedDate = comment.AddedDate,
+                    Description = comment.Description,
+                    Username = (await userManager.FindByIdAsync(comment.UserId.ToString())).UserName
+                });
+            }
+            Comments = commentsVM;
+		}
     }
 }
