@@ -11,6 +11,6 @@ namespace BlogApp.RazorPages.Data
 
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<BlogPostLike> BlogPostLikes { get; set; }
-    }
+        public DbSet<BlogPostLike> BlogPostLike { get; set; } //Name in plural doesn't work (PluralizingTableNameConvention)
+	}
 }

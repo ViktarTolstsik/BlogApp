@@ -16,6 +16,10 @@
 				</div>
 
 				<div class="mb-3">
+					<span><i class="bi bi-hand-thumbs-up me-1"></i>@Model.TotalLikes likes</span>
+				</div>
+
+				<div class="mb-3">
 					@if(Model.BlogPost.Tags != null)
 					{
 						foreach (var tag in Model.BlogPost.Tags)
