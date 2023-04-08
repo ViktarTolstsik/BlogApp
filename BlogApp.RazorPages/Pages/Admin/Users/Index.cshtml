@@ -12,6 +12,14 @@
 
 <div>
 	<div class="container">
+
+		<div class="mb-3 d-flex justify-content-end">
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addUserModal">
+				Add User
+			</button>
+		</div>
+
 		<table class="table">
 			<thead>
 				<tr>
@@ -33,3 +41,54 @@
 		</table>
 	</div>
 </div>
+
+<form method="post">
+	<!-- Modal -->
+	<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label class="form-label">Username</label>
+						<input type="text" class="form-control" asp-for="AddUserRequest.UserName"/>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Email</label>
+						<input type="email" class="form-control" asp-for="AddUserRequest.Email"/>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Password</label>
+						<input type="password" class="form-control" asp-for="AddUserRequest.Password"/>
+					</div>
+					<div class="mb-3">
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" value="User" checked disabled>
+							<label class="form-check-label" for="defaultCheck1">
+								User Role
+							</label>
+						</div>
+						@if (User.IsInRole("SuperAdmin"))
+						{
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" asp-for="AddUserRequest.AdminCheckbox">
+								<label class="form-check-label" for="defaultCheck2">
+									Admin Role
+								</label>
+							</div>
+						}
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-dark">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
