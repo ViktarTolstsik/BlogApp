@@ -6,5 +6,6 @@ namespace BlogApp.RazorPages.Repositories
     {
         Task<IEnumerable<IdentityUser>> GetAll();
         Task<bool> Add(IdentityUser user, string password, List<string> roles);
+        Task Delete(Guid userId);
     }
 }

@@ -1,11 +1,13 @@
 using BlogApp.RazorPages.Models.ViewModels;
 using BlogApp.RazorPages.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BlogApp.RazorPages.Pages.Admin.Users
 {
+	[Authorize(Roles ="Admin")]
 	public class IndexModel : PageModel
 	{
 		private readonly IUserRepository userRepository;
@@ -13,6 +15,8 @@ namespace BlogApp.RazorPages.Pages.Admin.Users
 		public List<User> Users { get; set; }
 		[BindProperty]
 		public AddUser AddUserRequest { get; set; }
+		[BindProperty]
+		public Guid SelectedUserId { get; set; }
 		public IndexModel(IUserRepository userRepository)
 		{
 			this.userRepository = userRepository;
@@ -51,12 +55,18 @@ namespace BlogApp.RazorPages.Pages.Admin.Users
 			}
 			var result = await userRepository.Add(identityUser, AddUserRequest.Password, roles);
 
-			if(result)
+			if (result)
 			{
 				return RedirectToPage("/admin/users/index");
 			}
 			return Page();
 
+		}
+		public async Task<IActionResult> OnPostDelete()
+		{
+			await userRepository.Delete(SelectedUserId);
+
+			return RedirectToPage("/admin/users/index");
 		}
 	}
 }
