@@ -15,17 +15,17 @@
 
 					<div class="mb-3">
 						<label class="form-label">Username</label>
-						<input type="text" class="form-control" asp-for="RegisterVM.Username" />
+						<input type="text" class="form-control" asp-for="RegisterVM.Username" required/>
 						<span class="text-danger" asp-validation-for="RegisterVM.Username"></span>
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Email</label>
-						<input type="email" class="form-control" asp-for="RegisterVM.Email" />
+						<input type="email" class="form-control" asp-for="RegisterVM.Email" required/>
 						<span class="text-danger" asp-validation-for="RegisterVM.Email"></span>
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Password</label>
-						<input type="password" class="form-control" asp-for="RegisterVM.Password" />
+						<input type="password" class="form-control" asp-for="RegisterVM.Password" required minlength="6"/>
 						<span class="text-danger" asp-validation-for="RegisterVM.Password"></span>
 					</div>
 
