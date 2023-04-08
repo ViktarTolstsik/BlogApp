@@ -22,37 +22,47 @@ namespace BlogApp.RazorPages.Pages
 
         public async Task<IActionResult> OnPost()
         {
-            var user = new IdentityUser
+
+            if (ModelState.IsValid)
             {
-                UserName = RegisterVM.Username,
-                Email = RegisterVM.Email
-            };
 
-            var identityResult = await userManager.CreateAsync(user, RegisterVM.Password);
 
-            if(identityResult.Succeeded) 
-            {
-                var addRolesResult = await userManager.AddToRoleAsync(user, "User");
-
-                if (addRolesResult.Succeeded) 
+                var user = new IdentityUser
                 {
-					ViewData["MessageDescription"] = new Notification
-					{
-						Type = Enums.NotificationType.Success,
-						Message = "Registration successful."
-					};
-					return Page();
-				}
+                    UserName = RegisterVM.Username,
+                    Email = RegisterVM.Email
+                };
+
+                var identityResult = await userManager.CreateAsync(user, RegisterVM.Password);
+
+                if (identityResult.Succeeded)
+                {
+                    var addRolesResult = await userManager.AddToRoleAsync(user, "User");
+
+                    if (addRolesResult.Succeeded)
+                    {
+                        ViewData["MessageDescription"] = new Notification
+                        {
+                            Type = Enums.NotificationType.Success,
+                            Message = "Registration successful."
+                        };
+                        return Page();
+                    }
+                }
+                else
+                {
+                    ViewData["MessageDescription"] = new Notification
+                    {
+                        Type = Enums.NotificationType.Error,
+                        Message = "Registration failed."
+                    };
+                }
+                return Page();
             }
             else
-            { 
-                ViewData["MessageDescription"] = new Notification
-                {
-                    Type = Enums.NotificationType.Error,
-                    Message = "Registration failed."
-                };
+            {
+                return Page();
             }
-			return Page();
 
         }
     }
