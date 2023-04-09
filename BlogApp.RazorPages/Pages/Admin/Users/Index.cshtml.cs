@@ -41,25 +41,32 @@ namespace BlogApp.RazorPages.Pages.Admin.Users
 
 		public async Task<IActionResult> OnPost()
 		{
-			var identityUser = new IdentityUser
+			if (ModelState.IsValid)
 			{
-				UserName = AddUserRequest.UserName,
-				Email = AddUserRequest.Email,
-			};
+				var identityUser = new IdentityUser
+				{
+					UserName = AddUserRequest.UserName,
+					Email = AddUserRequest.Email,
+				};
 
-			var roles = new List<string> { "User" };
+				var roles = new List<string> { "User" };
 
-			if (AddUserRequest.AdminCheckbox)
-			{
-				roles.Add("Admin");
+				if (AddUserRequest.AdminCheckbox)
+				{
+					roles.Add("Admin");
+				}
+				var result = await userRepository.Add(identityUser, AddUserRequest.Password, roles);
+
+				if (result)
+				{
+					return RedirectToPage("/admin/users/index");
+				}
+				return Page();
 			}
-			var result = await userRepository.Add(identityUser, AddUserRequest.Password, roles);
-
-			if (result)
+			else
 			{
-				return RedirectToPage("/admin/users/index");
+				return Page();
 			}
-			return Page();
 
 		}
 		public async Task<IActionResult> OnPostDelete()

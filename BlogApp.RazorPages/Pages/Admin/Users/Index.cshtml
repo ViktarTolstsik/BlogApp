@@ -45,7 +45,7 @@
 					}
 				</tbody>
 			</table>
-			<input type="hidden" asp-for="SelectedUserId" id="selectedUserId"/>
+			<input type="hidden" asp-for="SelectedUserId" id="selectedUserId" />
 		</form>
 	</div>
 </div>
@@ -64,15 +64,18 @@
 				<div class="modal-body">
 					<div class="mb-3">
 						<label class="form-label">Username</label>
-						<input type="text" class="form-control" asp-for="AddUserRequest.UserName" />
+						<input type="text" class="form-control" asp-for="AddUserRequest.UserName" required />
+						<span class="text-danger" asp-validation-for="AddUserRequest.UserName"></span>
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Email</label>
-						<input type="email" class="form-control" asp-for="AddUserRequest.Email" />
+						<input type="email" class="form-control" asp-for="AddUserRequest.Email" required />
+						<span class="text-danger" asp-validation-for="AddUserRequest.Email"></span>
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Password</label>
 						<input type="password" class="form-control" asp-for="AddUserRequest.Password" />
+						<span class="text-danger" asp-validation-for="AddUserRequest.Password"></span>
 					</div>
 					<div class="mb-3">
 						<div class="form-check">
@@ -111,7 +114,7 @@
 			element.addEventListener('click', function () {
 
 				const userId = element.dataset.id;
-				selectedUserIdElement.value = userId; 
+				selectedUserIdElement.value = userId;
 				deleteUserForm.submit();
 			})
 		})
