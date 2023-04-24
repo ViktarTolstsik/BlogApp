@@ -20,3 +20,10 @@ body {
 .blog-details img {
     max-width: 100%;
 }
+
+.layout-header {
+    background-color: #383838;
+    border: solid;
+    border-width: 0 0 5px 0;
+    border-color: #0e71cd;
+}
