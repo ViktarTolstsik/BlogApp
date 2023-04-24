@@ -17,7 +17,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow" style="background-color:blue">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark box-shadow" style="background-color:#383838; border:solid; border-width: 0 0 5px 0; border-color:#0e71cd">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">Blogster</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -69,11 +69,11 @@
         </nav>
     </header>
 
-        <main role="main" class="pb-3">
+    <main role="main" class="pb-3" style="background-color:aliceblue">
             @RenderBody()
         </main>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted" style="background-color:#383838">
         <div class="container">
             &copy; 2023 - Blogster - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
