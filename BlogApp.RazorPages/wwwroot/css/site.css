@@ -1,29 +1,38 @@
 html {
-  font-size: 14px;
+	font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+	html {
+		font-size: 16px;
+	}
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+	position: relative;
+	min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+	margin-bottom: 60px;
+	font-family: 'Century Gothic', sans-serif;
 }
 
 .blog-details img {
-    max-width: 100%;
+	max-width: 100%;
 }
 
 .layout-header {
-    background-color: #383838;
-    border: solid;
-    border-width: 0 0 5px 0;
-    border-color: #0e71cd;
+	background-color: #383838;
+	border: solid;
+	border-width: 0 0 5px 0;
+	border-color: #0e71cd;
+}
+
+.top {
+	background-color: #0e71cd;
+}
+
+.head-text {
+	color: aliceblue;
 }
