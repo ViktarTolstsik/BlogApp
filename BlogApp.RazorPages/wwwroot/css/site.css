@@ -34,5 +34,9 @@ body {
 }
 
 .head-text {
-	color: aliceblue;
+	color: #0c3167;
+}
+
+.tag-anchor {
+	text-decoration:none;
 }
