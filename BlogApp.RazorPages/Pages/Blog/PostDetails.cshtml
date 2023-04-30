@@ -7,14 +7,12 @@
 
 @if (Model.BlogPost != null)
 {
+	ViewData["Title"] = Model.BlogPost.PageTitle;
 
 	<div class="container my-5">
 		<div class="row justify-content-center">
 			<div class="col-12 col-lg-6">
-
-				ViewData["Title"] = Model.BlogPost.PageTitle;
-
-
+				
 				<h1 class="mb-3">@Model.BlogPost.Heading</h1>
 				<div class="d-flex justify-content-between">
 					<span class="text-secondary">@Model.BlogPost.Author</span>
@@ -97,11 +95,10 @@
 						}
 						else
 						{
-							<p>No comments</p>
+							<p>No comments yet</p>
 						}
 					</div>
 				</div>
-				}
 
 			</div>
 		</div>

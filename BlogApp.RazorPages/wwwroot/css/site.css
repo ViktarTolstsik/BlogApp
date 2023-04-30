@@ -1,3 +1,5 @@
+
+
 html {
 	font-size: 14px;
 }
@@ -38,5 +40,13 @@ body {
 }
 
 .tag-anchor {
-	text-decoration:none;
+	text-decoration: none;
+}
+
+.post {
+	border-radius: 15px;
+}
+
+.post-img {
+	border-radius: inherit;
 }
