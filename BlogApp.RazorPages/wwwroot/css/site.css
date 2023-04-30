@@ -21,7 +21,7 @@ body {
 }
 
 .main-field {
-	height:100%;
+	height:fit-content;
 }
 
 .blog-details img {
@@ -57,4 +57,10 @@ border-radius: 15px 15px 0 0;
 
 .post-img {
 	border-radius: inherit;
+}
+
+footer {
+	position:fixed;
+	bottom:0;
+	width:auto;
 }
