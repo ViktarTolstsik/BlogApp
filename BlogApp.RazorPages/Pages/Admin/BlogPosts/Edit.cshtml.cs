@@ -18,8 +18,8 @@ namespace BlogApp.RazorPages.Pages.Admin.BlogPosts
 		[BindProperty]
 		public EditPostRequest BlogPost { get; set; }
 
-		[BindProperty]
-		public IFormFile FeaturedImage { get; set; }
+		//[BindProperty]
+		//public IFormFile FeaturedImage { get; set; }
 
 		[BindProperty]
 		[Required]
