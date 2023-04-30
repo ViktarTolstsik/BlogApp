@@ -16,8 +16,12 @@ html {
 }
 
 body {
-	margin-bottom: 60px;
+	background-color: #0c3167;
 	font-family: 'Century Gothic', sans-serif;
+}
+
+.main-field {
+	height:100%;
 }
 
 .blog-details img {
@@ -33,6 +37,10 @@ body {
 
 .top {
 	background-color: #0e71cd;
+}
+
+.navbar {
+border-radius: 15px 15px 0 0;
 }
 
 .head-text {
