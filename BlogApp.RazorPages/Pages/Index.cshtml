@@ -4,7 +4,7 @@
 	ViewData["Title"] = "Home page";
 }
 <div class="mb-3 p-3 ">
-	<div class="bg-secondary bg-opacity-10 container px-4 py-5 page-intro">
+	<div class="container px-4 py-5 page-intro">
 		<div class="row">
 			<h1 class="display-8 head-text">
 				Blog
@@ -27,47 +27,53 @@
 					}
 				}
 			</div>
-			@if (Model.Blogs != null && Model.Blogs.Any())
-			{
-				bool isFirst = true;
-				@foreach (var blog in Model.Blogs)
+			<div class="post-layout">
+				@if (Model.Blogs != null && Model.Blogs.Any())
 				{
-					if (isFirst)
+					bool isFirst = true;
+					@foreach (var blog in Model.Blogs)
 					{
-						<div class="mb-5 shadow-lg post" style="background-color:aliceblue">
-							<img src="@blog.FeaturedImageUrl" alt="@blog.Heading" class="mb-2 d-block img-fluid post-img">
-							<div class="px-4 py-4">
-								<h2 class="mb-2">@blog.Heading</h2>
-								<p>
-									Author: @blog.Author
-									<br>
-									Publication Date: @blog.PublishedDate.ToShortDateString()
-								</p>
-								<p class="mb-2">@blog.ShortDescription</p>
-								<a href="/blog/@blog.UrlHandle" class="btn btn-dark">Read More</a>
+						if (isFirst)
+						{
+							<div class="mb-5 shadow-lg post" style="background-color:aliceblue">
+								<div class="first-post">
+									<div class="first-post-img">
+										<img src="@blog.FeaturedImageUrl" alt="@blog.Heading" class="d-block img-fluid post-img">
+									</div>
+									<div class="px-4 pt-4">
+										<h2 class="mb-2">@blog.Heading</h2>
+										<p>
+											Author: @blog.Author
+											<br>
+											Publication Date: @blog.PublishedDate.ToShortDateString()
+										</p>
+										<p class="mb-2">@blog.ShortDescription</p>
+										<a href="/blog/@blog.UrlHandle" class="btn btn-dark">Read More</a>
+									</div>
+								</div>
 							</div>
-						</div>
 
-						isFirst = false;
-					}
-					else
-					{
-						<div class="mb-5 shadow-lg post" style="background-color:aliceblue">
-							<img src="@blog.FeaturedImageUrl" alt="@blog.Heading" class="mb-2 d-block img-fluid post-img">
-							<div class="px-4 py-4">
-								<h2 class="mb-2">@blog.Heading</h2>
-								<p>
-									Author: @blog.Author
-									<br>
-									Publication Date: @blog.PublishedDate.ToShortDateString()
-								</p>
-								<p class="mb-2">@blog.ShortDescription</p>
-								<a href="/blog/@blog.UrlHandle" class="btn btn-dark">Read More</a>
+							isFirst = false;
+						}
+						else
+						{
+							<div class="mb-5 shadow-lg post" style="background-color:aliceblue">
+								<img src="@blog.FeaturedImageUrl" alt="@blog.Heading" class="mb-2 d-block img-fluid post-img">
+								<div class="px-4 py-4">
+									<h2 class="mb-2">@blog.Heading</h2>
+									<p>
+										Author: @blog.Author
+										<br>
+										Publication Date: @blog.PublishedDate.ToShortDateString()
+									</p>
+									<p class="mb-2">@blog.ShortDescription</p>
+									<a href="/blog/@blog.UrlHandle" class="btn btn-dark">Read More</a>
+								</div>
 							</div>
-						</div>
+						}
 					}
 				}
-			}
+			</div>
 		</div>
 	</div>
 </div>

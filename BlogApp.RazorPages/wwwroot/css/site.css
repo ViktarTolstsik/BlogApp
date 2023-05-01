@@ -58,12 +58,15 @@ body {
 }
 
 .head-text {
-	color: #0c3167;
+	color: aliceblue;
 	text-align:center;
 }
 
 .page-intro {
-	border-radius:1rem;
+	background-image: linear-gradient(to bottom, rgba(12, 49, 103, 0.7), rgba(12, 49, 103, 1) 90%), url("../img/7854057_1014.jpg");
+	background-size:cover;
+	background-repeat:repeat-x;
+	border-radius: 1.5rem;
 }
 
 .tags-line {
@@ -86,9 +89,25 @@ body {
 	transition:.5s;
 }
 
-	.post {
-		border-radius: 15px;
-	}
+.post-layout {
+display:grid;
+grid-template-columns: repeat(2, 1fr);
+}
+
+.first-post {
+	grid-column-start:1;
+	grid-column-end:2;
+	grid-row-start: 1;
+	display:grid;
+	grid-template-columns: 1fr auto;
+}
+.first-post-img {
+	border-radius:1rem
+}
+
+.post {
+	border-radius: 15px;
+}
 
 .post-img {
 	border-radius: inherit;
