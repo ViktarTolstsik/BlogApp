@@ -16,12 +16,18 @@ html {
 }
 
 body {
-	background-color: #0c3167;
+	background-image: linear-gradient(to bottom, rgba(12, 49, 103, 0.81), rgba(12, 49, 103, 1) 70%), url("../img/7854057_1014.jpg");
+	background-size:contain;
 	font-family: 'Century Gothic', sans-serif;
 }
 
+.background {
+
+}
+
+
 .main-field {
-	height:fit-content;
+	min-height:82.7vh;
 }
 
 .blog-details img {
@@ -60,7 +66,5 @@ border-radius: 15px 15px 0 0;
 }
 
 footer {
-	position:fixed;
-	bottom:0;
-	width:auto;
+	width:100%;
 }
