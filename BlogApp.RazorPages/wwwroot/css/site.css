@@ -4,12 +4,6 @@ html {
 	font-size: 14px;
 }
 
-@media (min-width: 768px) {
-	html {
-		font-size: 16px;
-	}
-}
-
 html {
 	position: relative;
 	min-height: 100%;
@@ -17,17 +11,16 @@ html {
 
 body {
 	background-image: linear-gradient(to bottom, rgba(12, 49, 103, 0.81), rgba(12, 49, 103, 1) 70%), url("../img/7854057_1014.jpg");
-	background-size:contain;
+	background-size: 100%;
 	font-family: 'Century Gothic', sans-serif;
 }
 
-.background {
-
+.page {
+	margin-top: 5rem;
 }
 
-
 .main-field {
-	min-height:82.7vh;
+	min-height: 82.7vh;
 }
 
 .blog-details img {
@@ -46,25 +39,84 @@ body {
 }
 
 .navbar {
-border-radius: 15px 15px 0 0;
+	border-radius: 15px 15px 0 0;
+}
+
+.top-nav-link {
+	text-decoration: none;
+	padding: .5rem;
+	color: aliceblue;
+}
+
+.top-nav-link:hover {
+		color: #0e71cd;
+		transition: .5s;
+}
+
+.nav-title {
+		display:none;
 }
 
 .head-text {
 	color: #0c3167;
+	text-align:center;
+}
+
+.page-intro {
+	border-radius:1rem;
+}
+
+.tags-line {
+	display:flex;
+	justify-content:center;
 }
 
 .tag-anchor {
 	text-decoration: none;
+	padding: 0 1rem .1rem 1rem;
+	margin: 0 1rem 0 1rem;
+	font-size: 1.3rem;
+	color: #0e71cd;
+	border-radius: .8rem;
 }
 
-.post {
-	border-radius: 15px;
+.tag-anchor:hover {
+	color:aliceblue;
+	background-color:rgba(12, 49, 103, 1);
+	transition:.5s;
 }
+
+	.post {
+		border-radius: 15px;
+	}
 
 .post-img {
 	border-radius: inherit;
 }
 
 footer {
-	width:100%;
+	width: 100%;
+}
+
+
+@media (min-width: 992px) {
+	.nav-title {
+		display:inline;
+	}
+}
+@media (max-width: 991px) {
+	.bi {
+		font-size:1.5rem;
+	}
+}
+@media (min-width: 768px) {
+	html {
+		font-size: 16px;
+	}
+}
+
+@media (max-width: 575px) {
+	.nav-title {
+		display: inline;
+	}
 }
