@@ -35,21 +35,19 @@
 					{
 						if (isFirst)
 						{
-							<div class="mb-5 shadow-lg post" style="background-color:aliceblue">
-								<div class="first-post">
-									<div class="first-post-img">
-										<img src="@blog.FeaturedImageUrl" alt="@blog.Heading" class="d-block img-fluid post-img">
-									</div>
-									<div class="px-4 pt-4">
-										<h2 class="mb-2">@blog.Heading</h2>
-										<p>
-											Author: @blog.Author
-											<br>
-											Publication Date: @blog.PublishedDate.ToShortDateString()
-										</p>
-										<p class="mb-2">@blog.ShortDescription</p>
-										<a href="/blog/@blog.UrlHandle" class="btn btn-dark">Read More</a>
-									</div>
+							<div class="mb-5 shadow-lg first-post" style="background-color:aliceblue">
+								<div class="first-post-img">
+									<img src="@blog.FeaturedImageUrl" alt="@blog.Heading" class="d-block img-fluid post-img">
+								</div>
+								<div class="px-4 pt-4">
+									<h2 class="mb-2">@blog.Heading</h2>
+									<p>
+										Author: @blog.Author
+										<br>
+										Publication Date: @blog.PublishedDate.ToShortDateString()
+									</p>
+									<p class="mb-2">@blog.ShortDescription</p>
+									<a href="/blog/@blog.UrlHandle" class="btn btn-dark">Read More</a>
 								</div>
 							</div>
 

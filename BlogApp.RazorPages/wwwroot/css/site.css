@@ -97,6 +97,7 @@ grid-template-columns: repeat(2, 1fr);
 .first-post {
 	display:grid;
 	grid-template-columns: 1fr auto;
+	grid-column-start: span 2;
 }
 .first-post-img {
 	border-radius:1rem
