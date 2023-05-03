@@ -99,9 +99,11 @@ grid-column-gap:1rem;
 	display:grid;
 	grid-template-columns: 1fr auto;
 	grid-column-start: span 2;
+    height:25rem;
 }
 .first-post-img {
-	border-radius:1rem
+	border-radius:1rem;
+	max-width:35rem;
 }
 
 .post {
@@ -110,6 +112,13 @@ grid-column-gap:1rem;
 
 .post-img {
 	border-radius: inherit;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.secondary-post-img {
+	height:15rem;
 }
 
 footer {
