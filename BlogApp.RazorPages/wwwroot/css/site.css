@@ -103,7 +103,7 @@ grid-column-gap:1rem;
 }
 .first-post-img {
 	border-radius:1rem;
-	max-width:35rem;
+	width:30rem;
 }
 
 .post {
