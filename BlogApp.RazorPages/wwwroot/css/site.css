@@ -143,6 +143,9 @@ footer {
 	.tags-line {
 		grid-template-columns: repeat(10, auto);
 	}
+	.nav-title {
+		display: inline;
+	}
 }
 @media (min-width: 992px) and (max-width: 1399px) {
 	.nav-title {
