@@ -16,7 +16,7 @@ namespace BlogApp.RazorPages.Repositories
 		{
 			var tags = await blogAppDbContext.Tags.ToListAsync();
 
-			tags.DistinctBy(x => x.Name.ToLower());
+			tags = tags.DistinctBy(x => x.Name.ToLower()).ToList();
 
 			return tags;
 		}

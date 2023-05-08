@@ -15,7 +15,7 @@
 
 <div class="container">
 	<div class="row justify-content-center">
-		<div class="col-8">
+		<div class="col-10">
 			<div class="mb-5 tags-line">
 				@if (Model.Tags != null && Model.Tags.Any())
 				{
@@ -39,15 +39,15 @@
 								<div class="first-post-img">
 									<img src="@blog.FeaturedImageUrl" alt="@blog.Heading" class="d-block post-img">
 								</div>
-								<div class="px-4 pt-4">
+								<div class="px-4 pt-4 post-info pb-5">
 									<h2 class="mb-2">@blog.Heading</h2>
 									<p>
 										Author: @blog.Author
 										<br>
 										Publication Date: @blog.PublishedDate.ToShortDateString()
 									</p>
-									<p class="mb-2">@blog.ShortDescription</p>
-									<a href="/blog/@blog.UrlHandle" class="btn btn-dark">Read More</a>
+									<p class="mb-2 description">@blog.ShortDescription</p>
+									<a href="/blog/@blog.UrlHandle" class="btn btn-dark btn-more">Read More</a>
 								</div>
 							</div>
 
@@ -55,17 +55,17 @@
 						}
 						else
 						{
-							<div class="mb-5 shadow-lg post" style="background-color:aliceblue">
+							<div class="mb-5 shadow-lg post post-info pb-5" style="background-color:aliceblue">
 								<img src="@blog.FeaturedImageUrl" alt="@blog.Heading" class="mb-2 d-block img-fluid post-img secondary-post-img">
 								<div class="px-4 py-4">
-									<h2 class="mb-2">@blog.Heading</h2>
+									<h2 class="mb-2 post-heading">@blog.Heading</h2>
 									<p>
 										Author: @blog.Author
 										<br>
 										Publication Date: @blog.PublishedDate.ToShortDateString()
 									</p>
-									<p class="mb-2">@blog.ShortDescription</p>
-									<a href="/blog/@blog.UrlHandle" class="btn btn-dark">Read More</a>
+									<p class="mb-2 description">@blog.ShortDescription</p>
+									<a href="/blog/@blog.UrlHandle" class="btn btn-dark btn-more">Read More</a>
 								</div>
 							</div>
 						}
