@@ -100,11 +100,11 @@ body {
 	border-radius: .5rem;
 }
 
-.tag-anchor-inner:hover {
-	color: aliceblue;
-	background-color: rgba(12, 49, 103, 1);
-	transition: .2s;
-}
+	.tag-anchor-inner:hover {
+		color: aliceblue;
+		background-color: rgba(12, 49, 103, 1);
+		transition: .2s;
+	}
 
 .post-layout {
 	display: grid;
@@ -142,6 +142,25 @@ body {
 
 .post-info {
 	position: relative;
+}
+
+.btn:hover {
+	color: #0e71cd;
+}
+
+.btn.bg-dark {
+	color:aliceblue;
+}
+	.btn.bg-dark:hover {
+		color: #0e71cd;
+	}
+.btn.bg-light {
+	background-color: aliceblue;
+	color: #383838;
+}
+
+.btn.bg-light:hover {
+	color: #0e71cd;
 }
 
 .btn-more {
