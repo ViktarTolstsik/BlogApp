@@ -25,6 +25,20 @@ body {
 	min-height: 82.7vh;
 }
 
+.input-control {
+	outline: none; 
+	width:100%;
+	border-radius: 3px 0px 0px 0px;
+	border: 0px;
+	border-bottom: solid 1px #383838;
+	background-color:aliceblue;
+}
+.password-eye {
+	border-radius: 0px 3px 0px 0px;
+	padding-right: .3rem;
+	background-color: aliceblue;
+	border-bottom: solid 1px #383838;
+}
 .blog-details img {
 	max-width: 100%;
 }
