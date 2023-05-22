@@ -15,17 +15,20 @@
 
 					<div class="mb-3">
 						<label class="form-label">Username</label>
-						<input type="text" class="form-control" asp-for="RegisterVM.Username" required/>
+						<input type="text" class="input-control" asp-for="RegisterVM.Username" required />
 						<span class="text-danger" asp-validation-for="RegisterVM.Username"></span>
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Email</label>
-						<input type="email" class="form-control" asp-for="RegisterVM.Email" required/>
+						<input type="email" class="input-control" asp-for="RegisterVM.Email" required />
 						<span class="text-danger" asp-validation-for="RegisterVM.Email"></span>
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Password</label>
-						<input type="password" class="form-control" asp-for="RegisterVM.Password" required minlength="6"/>
+						<div style="display:flex">
+							<input type="password" class="input-control" id="passwordBox" asp-for="RegisterVM.Password" required minlength="6" />
+							<span class="password-eye"><i class="bi bi-eye-fill"></i></span>
+						</div>
 						<span class="text-danger" asp-validation-for="RegisterVM.Password"></span>
 					</div>
 
@@ -36,3 +39,22 @@
 		</div>
 	</div>
 </div>
+
+@section Scripts
+	{
+	<script>
+		const passField = document.getElementById("passwordBox");
+		const showBtn = document.querySelector("span i");
+		showBtn.onclick = (() => {
+			if (passField.type === "password") {
+				passField.type = "text";
+				showBtn.classList.remove("bi-eye-fill");
+				showBtn.classList.add("bi-eye-slash-fill");
+			} else {
+				passField.type = "password";
+				showBtn.classList.remove("bi-eye-slash-fill");
+				showBtn.classList.add("bi-eye-fill");
+			}
+		});
+	</script>
+}
