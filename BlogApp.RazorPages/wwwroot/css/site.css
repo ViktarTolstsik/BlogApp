@@ -26,19 +26,21 @@ body {
 }
 
 .input-control {
-	outline: none; 
-	width:100%;
+	outline: none;
+	width: 100%;
 	border-radius: 3px 0px 0px 0px;
 	border: 0px;
 	border-bottom: solid 1px #383838;
-	background-color:aliceblue;
+	background-color: aliceblue;
 }
+
 .password-eye {
 	border-radius: 0px 3px 0px 0px;
 	padding-right: .3rem;
 	background-color: aliceblue;
 	border-bottom: solid 1px #383838;
 }
+
 .blog-details img {
 	max-width: 100%;
 }
@@ -158,24 +160,32 @@ body {
 	position: relative;
 }
 
+.btn-view {
+	background-color: #383838;
+	color:aliceblue;
+}
+
+
 .btn:hover {
 	color: #0e71cd;
 }
 
 .btn.bg-dark {
-	color:aliceblue;
+	color: aliceblue;
 }
+
 	.btn.bg-dark:hover {
 		color: #0e71cd;
 	}
+
 .btn.bg-light {
 	background-color: aliceblue;
 	color: #383838;
 }
 
-.btn.bg-light:hover {
-	color: #0e71cd;
-}
+	.btn.bg-light:hover {
+		color: #0e71cd;
+	}
 
 .btn-more {
 	position: absolute;
